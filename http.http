@@ -1,0 +1,34 @@
+# Endpoint  
+### 
+GET http://localhost:3000/init
+Content-Type: application/json  
+
+# Endpoint  
+### 
+POST http://localhost:3000/init/show/78888
+Content-Type: application/json 
+
+{ "number": 45}
+
+
+# Endpoint  
+### 
+PUT http://localhost:3000/
+Content-Type: application/json  
+
+{"id":"10d4f2c4-5315-40dc-b1fc-4e9d10a82828","name":"Professor","email":"aaa@system.com","currentPassword":null,"newPassword":null,"passwordConfirmation":null}
+
+# Endpoint  
+### 
+POST http://localhost:3000/
+Content-Type: application/json  
+
+{"profile":"monitor","minValue":0,"maxValue":0,"discipline":"","rating":2}
+
+ 
+# Endpoint  
+### 
+DELETE http://localhost:3000/
+Content-Type: application/json  
+
+{}
