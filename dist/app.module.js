@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const app_japan_service_1 = require("./app.japan.service");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
@@ -30,7 +31,12 @@ AppModule = __decorate([
             events_module_1.EventsModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [
+            {
+                provide: app_service_1.AppService,
+                useClass: app_japan_service_1.AppJapanService
+            },
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

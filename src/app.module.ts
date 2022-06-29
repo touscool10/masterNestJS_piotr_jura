@@ -1,3 +1,4 @@
+import { AppJapanService } from './app.japan.service';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -20,6 +21,11 @@ import { EventsModule } from './events/events.module';
   EventsModule
 ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: AppService,
+      useClass: AppJapanService
+    },
+  ],
 })
 export class AppModule {}
