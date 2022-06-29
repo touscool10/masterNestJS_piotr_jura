@@ -8,14 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const event_controller_1 = require("./event.controller");
+const event_entity_1 = require("./event.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
-        controllers: [app_controller_1.AppController],
+        imports: [typeorm_1.TypeOrmModule.forRoot({
+                type: 'mysql',
+                host: '127.0.0.1',
+                port: 8006,
+                username: 'root',
+                password: 'example',
+                database: 'nest-events',
+                entities: [event_entity_1.Event],
+                synchronize: true
+            }),
+            typeorm_1.TypeOrmModule.forFeature([event_entity_1.Event])
+        ],
+        controllers: [app_controller_1.AppController, event_controller_1.EventController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

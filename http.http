@@ -1,34 +1,58 @@
-# Endpoint  
+# Endpoint FindAllEvents
 ### 
-GET http://localhost:3000/init
+GET http://localhost:3000/events
 Content-Type: application/json  
+
+# Endpoint  FindOneEvent
+### 
+GET http://localhost:3000/events/1
+Content-Type: application/json  
+
+# Endpoint FindOneEvent
+### 
+GET http://localhost:3000/events/practice
+Content-Type: application/json  
+ 
 
 # Endpoint  
 ### 
-POST http://localhost:3000/init/show/78888
+POST http://localhost:3000/events
 Content-Type: application/json 
 
-{ "number": 45}
-
+{   
+    "name": 568888888,
+     "description": "Clean Code",
+    "when": "2022-10-17T13:00:00",
+    "address": "google-meet-sd-gdd"
+}
 
 # Endpoint  
 ### 
-PUT http://localhost:3000/
+POST http://localhost:3000/events
+Content-Type: application/json 
+
+{   
+    "name": "Pafffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+    "description": "Clean Code",
+    "when": "10/07/2022",
+    "address": "google-meet-sd-gdd"
+}
+
+# Endpoint  
+### 
+PATCH http://localhost:3000/events/1
 Content-Type: application/json  
 
-{"id":"10d4f2c4-5315-40dc-b1fc-4e9d10a82828","name":"Professor","email":"aaa@system.com","currentPassword":null,"newPassword":null,"passwordConfirmation":null}
+{   
+    "name": "xxxxxx", 
+    "description": "xxxxxx",
+    "when": "2021-02-17 21:00:00",
+    "address": "xxxxxx"
+}
 
 # Endpoint  
 ### 
-POST http://localhost:3000/
-Content-Type: application/json  
-
-{"profile":"monitor","minValue":0,"maxValue":0,"discipline":"","rating":2}
-
- 
-# Endpoint  
-### 
-DELETE http://localhost:3000/
+DELETE http://localhost:3000/events/7
 Content-Type: application/json  
 
 {}
