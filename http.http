@@ -20,10 +20,10 @@ POST http://localhost:3000/events
 Content-Type: application/json 
 
 {   
-    "name": 568888888,
-     "description": "Clean Code",
+    "name": "Shopping",
+    "description": "Let's go shopping",
     "when": "2022-10-17T13:00:00",
-    "address": "google-meet-sd-gdd"
+    "address": "Street 50, WallStreet Center"
 }
 
 # Endpoint  
@@ -44,10 +44,10 @@ PATCH http://localhost:3000/events/1
 Content-Type: application/json  
 
 {   
-    "name": "xxxxxx", 
-    "description": "xxxxxx",
-    "when": "2021-02-17 21:00:00",
-    "address": "xxxxxx"
+    "name": "Shopping",
+    "description": "Let's go shopping",
+    "when": "2022-10-17T13:00:00",
+    "address": "Street 50, WallStreet Center"
 }
 
 # Endpoint  
