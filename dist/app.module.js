@@ -7,28 +7,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const school_module_1 = require("./school/school.module");
+const app_dummy_1 = require("./app.dummy");
 const app_japan_service_1 = require("./app.japan.service");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const event_entity_1 = require("./events/event.entity");
 const events_module_1 = require("./events/events.module");
+const config_1 = require("@nestjs/config");
+const orm_config_1 = require("./config/orm.config");
+const orm_config_prod_1 = require("./config/orm.config.prod");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: '127.0.0.1',
-                port: 8006,
-                username: 'root',
-                password: 'example',
-                database: 'nest-events',
-                entities: [event_entity_1.Event],
-                synchronize: true
+        imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+                load: [orm_config_1.default],
+                expandVariables: true
             }),
-            events_module_1.EventsModule
+            typeorm_1.TypeOrmModule.forRootAsync({
+                useFactory: process.env.NODE_ENV !== 'production'
+                    ? orm_config_1.default : orm_config_prod_1.default
+            }),
+            events_module_1.EventsModule,
+            school_module_1.SchoolModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [
@@ -36,6 +41,16 @@ AppModule = __decorate([
                 provide: app_service_1.AppService,
                 useClass: app_japan_service_1.AppJapanService
             },
+            {
+                provide: "APP_NAME",
+                useValue: "Setonde"
+            },
+            {
+                provide: "MESSAGE",
+                useFactory: (app) => { return `${app.dummy()} Factory!`; },
+                inject: [app_dummy_1.AppDummy]
+            },
+            app_dummy_1.AppDummy
         ],
     })
 ], AppModule);

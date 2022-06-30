@@ -1,16 +1,64 @@
 # Endpoint FindAllEvents
 ### 
-GET http://localhost:3000
+GET http://localhost:3000/events/2
 Content-Type: application/json  
 
 # Endpoint  FindOneEvent
 ### 
-GET http://localhost:3000/events/1
+GET http://localhost:3000/events/9
 Content-Type: application/json  
 
-# Endpoint FindOneEvent
+# Endpoint 
 ### 
 GET http://localhost:3000/events/practice
+Content-Type: application/json  
+ 
+
+# Endpoint 
+### 
+GET http://localhost:3000/events/practice_2
+Content-Type: application/json  
+ 
+
+ # Endpoint 
+### 
+GET http://localhost:3000/events/practice_3
+Content-Type: application/json  
+
+# Endpoint 
+### 
+GET http://localhost:3000/events/practice_4
+Content-Type: application/json  
+ 
+
+# Endpoint 
+### 
+GET http://localhost:3000/events/practice_5
+Content-Type: application/json  
+ 
+
+# Endpoint 
+### 
+GET http://localhost:3000/events/cascade
+Content-Type: application/json  
+ 
+
+# Endpoint 
+### 
+POST http://localhost:3000/school/create
+Content-Type: application/json  
+
+
+# Endpoint 
+### 
+POST http://localhost:3000/school/remove
+Content-Type: application/json  
+ 
+
+
+# Endpoint 
+### 
+GET http://localhost:3000/app/hello
 Content-Type: application/json  
  
 
