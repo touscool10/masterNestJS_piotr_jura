@@ -1,7 +1,8 @@
-import { UpdateEventDto } from './update-event.dto';
-import { CreateEventDto } from './create-event.dto'; 
+import { ListEvents } from './input/list.events';
+import { UpdateEventDto } from './input/update-event.dto';
+import { CreateEventDto } from './input/create-event.dto'; 
 import { Event } from './event.entity'; 
-import { Body, Controller, Delete, Get, HttpCode, Param, Put, Patch, Post, ParseIntPipe, ValidationPipe, Logger, NotFoundException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Put, Patch, Post, ParseIntPipe, ValidationPipe, Logger, NotFoundException, Query, UsePipes } from '@nestjs/common';
 import { Like, MoreThan, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { throws } from 'assert';
@@ -26,13 +27,22 @@ export class EventController {
 
     private events: Event[] = [];
 
-    @Get()
-    async findAll(): Promise<Event[]> {
-        this.logger.log(`Hit the findAll route`);
-        
-        const events = await this.eventRepo.find();
 
-        this.logger.debug(`Found ${events.length} events`);
+    @Get()
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async findAll(@Query() filter: ListEvents) {
+
+        //console.log("filter: ", filter);
+        //this.logger.log(`Hit the findAll route`);
+        
+        const events = await this.eventsService.getEventsWithAttendeeCountFilteredPaginated(
+            filter, {
+                limit: 2,
+                currentPage: filter.page,
+                total: true
+            });
+
+        //this.logger.debug(`Found ${events.length} events`);
         
         return events;
     }

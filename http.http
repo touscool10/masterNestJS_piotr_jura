@@ -1,6 +1,6 @@
 # Endpoint FindAllEvents
 ### 
-GET http://localhost:3000/events/2
+GET http://localhost:3000/events?page=3
 Content-Type: application/json  
 
 # Endpoint  FindOneEvent

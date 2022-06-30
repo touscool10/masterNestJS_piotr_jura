@@ -1,3 +1,4 @@
+import { ListEvents, WhenEventFilter } from './input/list.events';
 import { AttendeeAnswerEnum } from './attendee.entity';
 import { Attendee } from 'src/events/attendee.entity';
 import { Injectable, Logger } from "@nestjs/common";
@@ -5,6 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import e from "express";
 import { Repository } from "typeorm";
 import { Event } from "./event.entity";
+import { paginate, PaginationOptions } from './pagination/paginator';
 
 
 @Injectable()
@@ -44,6 +46,46 @@ export class EventsService {
             (qb) => qb
                 .where('attendee.answer = :answer',
                 { answer: AttendeeAnswerEnum.Rejected })
+        );
+    }
+
+    private async getEventsWithAttendeeCountFiltered(filter?: ListEvents) {
+        let query = this.getEventsWithAttendeeCountQuery();
+
+        if(!filter || filter.when == 1 ){
+            return query;
+        }
+
+        if(filter.when){
+
+            if (filter.when == WhenEventFilter.Today) {
+                query = query
+                .andWhere(`e.when >= CURDATE() AND e.when <= CURDATE() + INTERVAL 1 DAY`);
+            }
+            if (filter.when == WhenEventFilter.Tomorrow) {
+                query = query
+                .andWhere(`e.when >= CURDATE() + INTERVAL 1 DAY AND e.when <= CURDATE() + INTERVAL 2 DAY`);
+            }
+            if (filter.when == WhenEventFilter.ThisWeek) {
+                query = query
+                .andWhere(`YEARWEEK(e.when, 1) = YEARWEEK(CURDATE(), 1)`);
+            }
+            if (filter.when == WhenEventFilter.NextWeek) {
+                    query = query
+                    .andWhere(`YEARWEEK(e.when, 1) = YEARWEEK(CURDATE(), 1) + 1`);
+            }
+            
+            return query;
+        }
+    }
+
+    public async getEventsWithAttendeeCountFilteredPaginated(
+        filter: ListEvents,
+        paginateOptions: PaginationOptions
+    ) {
+        return await paginate(
+        await this.getEventsWithAttendeeCountFiltered(filter), 
+        paginateOptions
         );
     }
 
