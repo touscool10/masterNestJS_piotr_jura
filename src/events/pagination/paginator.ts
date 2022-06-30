@@ -24,9 +24,11 @@ export async function paginate<T> (
     const offset = (options.currentPage - 1) * options.limit;
     const data = await qb.limit(options.limit).offset(offset).getMany();
 
+    const lastPage = Math.ceil( ( await qb.getCount() ) / options.limit );
+
     return {
-        first: offset+1,
-        last: offset + data.length,
+        first: options.currentPage >= lastPage+1 ? null : offset+1,
+        last:  options.currentPage >= lastPage+1 ? null : offset + data.length,
         limit: options.limit,
         total: options.total ? await qb.getCount() : null,
         data: data

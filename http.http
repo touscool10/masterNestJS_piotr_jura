@@ -1,6 +1,6 @@
 # Endpoint FindAllEvents
 ### 
-GET http://localhost:3000/events
+GET http://localhost:3000/events?page=4
 Content-Type: application/json  
 
 # Endpoint  FindOneEvent
@@ -100,7 +100,7 @@ Content-Type: application/json
 
 # Endpoint  
 ### 
-DELETE http://localhost:3000/events/7
+DELETE http://localhost:3000/events/1
 Content-Type: application/json  
 
 {}
