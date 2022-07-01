@@ -1,5 +1,7 @@
 import { Controller, Post } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
+import { Profile } from "src/auth/profile.entity";
+import { User } from "src/auth/user.entity";
 import { Repository } from 'typeorm';
 import { Subject } from './subject.entity';
 import { Teacher } from './teacher.entity';
@@ -17,43 +19,43 @@ export class TrainingController {
   @Post('/create')
   public async savingRelation() {
 
-    const subject = new Subject();
-    subject.name = 'Biology';
-    //subject = await this.subjectRepository.findOne({ where: { id: 3 } });
+    /*const subject = new Subject();
+    subject.name = 'Biology';*/
 
-    const teacher1 = new Teacher();
-    teacher1.name = 'Bruna';
+    const subject = await this.subjectRepository.findOne({ where: { id: 5} });
+
+    /*const teacher1 = new Teacher();
+    teacher1.name = 'Chancel';
 
     const teacher2 = new Teacher();
-    teacher2.name = 'Simon';
-
-    subject.teachers = [teacher1, teacher2];
-    await this.subjectRepository.save(subject);
+    teacher2.name = 'Gildas';
     
-    // await this.teacherRepository.save([teacher1, teacher2]);
+    await this.teacherRepository.save([teacher1, teacher2]); */
 
     // How to use One to One
-    // const user = new User();
-    // const profile = new Profile();
+    const user = new User();
+    const profile = new Profile();
 
-    // user.profile = profile;
-    // user.profile = null;
+    user.profile = profile;
+    
+    //To remove the profile of the user: user.profile = null;
+
     // Save the user here
 
 
-    //const teacher1 = await this.teacherRepository.findOne({ where: { id: 5 } });
-    //const teacher2 = await this.teacherRepository.findOne({ where: { id: 6 } });
+    const teacher1 = await this.teacherRepository.findOne({ where: { id: 5 } });
+    const teacher2 = await this.teacherRepository.findOne({ where: { id: 6 } });
 
     return await this.subjectRepository
-      .createQueryBuilder()
-      .relation(Subject, 'teachers')
-      .of(subject)
-      .add([teacher1, teacher2]); 
-  }
+                  .createQueryBuilder()
+                  .relation(Subject, 'teachers')
+                  .of(subject)
+                  .add([teacher1, teacher2]);
+    }
 
   @Post('/remove')
   public async removingRelation() {
-     const subject = await this.subjectRepository.findOne({
+    /*const subject = await this.subjectRepository.findOne({
        where :{ id: 1},
        relations: ['teachers'] 
     });
@@ -62,11 +64,15 @@ export class TrainingController {
        teacher => teacher.id !== 2
      );
 
-    await this.subjectRepository.save(subject);
+    await this.subjectRepository.save(subject);*/
 
-    /*await this.subjectRepository.createQueryBuilder('s')
-      .update()
-      .set({ name: "Confidential" })
-      .execute(); */
+    const updatedResult =  await this.subjectRepository
+                          .createQueryBuilder('s')
+                          .update()
+                          .set({
+                            name: "Confidential"
+                          })
+                          .execute();
   }
+
 }

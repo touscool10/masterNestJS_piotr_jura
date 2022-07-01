@@ -43,26 +43,57 @@ GET http://localhost:3000/events/cascade
 Content-Type: application/json  
  
 
+# Endpoint GetUserByToken
+### 
+GET http://localhost:3000/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoYXJsZXMyMDIyIiwic3ViIjoyLCJpYXQiOjE2NTY2NDYwNDYsImV4cCI6MTY1NjY0OTY0Nn0.b9I1L-Gfjt7gq-JfstlL5F55Uo4awU5SQQdX9G-za3g
+ 
+
 # Endpoint 
 ### 
 POST http://localhost:3000/school/create
 Content-Type: application/json  
 
 
-# Endpoint 
+# Endpoint RemoveSubjectOrTeacher
 ### 
 POST http://localhost:3000/school/remove
 Content-Type: application/json  
  
 
 
-# Endpoint 
+# Endpoint Login
+### 
+POST http://localhost:3000/auth/login
+Content-Type: application/json  
+
+{
+    "username": "touscool10",
+    "password": "18501405"
+}
+
+# Endpoint CreateUser
+### 
+POST http://localhost:3000/users
+Content-Type: application/json  
+
+{
+    "username": "charles2022",
+    "email": "charles@gmail.com",
+    "password": "18501405123",
+    "retypedPassword": "18501405123",
+    "firstName": "Charles",
+    "lastName": "Abami"
+}
+
+# Endpoint HelloWorldInJapan
 ### 
 GET http://localhost:3000/app/hello
 Content-Type: application/json  
  
 
-# Endpoint  
+# Endpoint CreateEvent
 ### 
 POST http://localhost:3000/events
 Content-Type: application/json 
@@ -74,7 +105,7 @@ Content-Type: application/json
     "address": "Street 50, WallStreet Center"
 }
 
-# Endpoint  
+# Endpoint  CreateEvent
 ### 
 POST http://localhost:3000/events
 Content-Type: application/json 
@@ -86,7 +117,7 @@ Content-Type: application/json
     "address": "google-meet-sd-gdd"
 }
 
-# Endpoint  
+# Endpoint  UpdateEvent
 ### 
 PATCH http://localhost:3000/events/1
 Content-Type: application/json  
@@ -98,7 +129,7 @@ Content-Type: application/json
     "address": "Street 50, WallStreet Center"
 }
 
-# Endpoint  
+# Endpoint  DeleteEvent
 ### 
 DELETE http://localhost:3000/events/1
 Content-Type: application/json  

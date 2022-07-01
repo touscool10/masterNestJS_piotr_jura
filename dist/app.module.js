@@ -18,6 +18,7 @@ const events_module_1 = require("./events/events.module");
 const config_1 = require("@nestjs/config");
 const orm_config_1 = require("./config/orm.config");
 const orm_config_prod_1 = require("./config/orm.config.prod");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,7 +34,8 @@ AppModule = __decorate([
                     ? orm_config_1.default : orm_config_prod_1.default
             }),
             events_module_1.EventsModule,
-            school_module_1.SchoolModule
+            school_module_1.SchoolModule,
+            auth_module_1.AuthModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [
