@@ -28,11 +28,11 @@ export class Event {
     attendees: Attendee[];
 
     @ManyToOne(() => User, (user) => user.organized)
-    //@JoinColumn({ name: 'organizerId'})
+    @JoinColumn({ name: 'organizerId'})
     organizer:User;
 
-    //@Column()
-    //organizerId: number;
+    @Column({ nullable: true })
+    organizerId: number;
 
     attendeeCount?: number;
     attendeeRejected?: number;

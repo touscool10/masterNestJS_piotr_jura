@@ -1,12 +1,15 @@
 import { ListEvents, WhenEventFilter } from './input/list.events';
 import { AttendeeAnswerEnum } from './attendee.entity';
 import { Attendee } from 'src/events/attendee.entity';
-import { Injectable, Logger } from "@nestjs/common";
+import { ForbiddenException, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import e from "express";
 import { DeleteResult, Repository } from "typeorm";
 import { Event } from "./event.entity";
 import { paginate, PaginationOptions } from './pagination/paginator';
+import { CreateEventDto } from './input/create-event.dto';
+import { User } from 'src/auth/user.entity';
+import { UpdateEventDto } from './input/update-event.dto';
 
 
 @Injectable()
@@ -96,6 +99,31 @@ export class EventsService {
         this.logger.debug(query.getSql());
 
         return await query.getOne();
+    }
+
+    public async createEvent(input: CreateEventDto, user: User): Promise<Event> {
+        const event: any = {
+            ...input,
+            when: new Date(input.when),
+            organizer: user,
+            //organizerId: user.id
+        };
+
+        return await this.eventsRepo.save(event) ;         
+    }
+
+    public async updateEvent(event: Event, input: UpdateEventDto): Promise<Event> {
+
+        let newInput:Event = {
+            ...event,
+            ...input,
+            when: input.when ? new Date(input.when) : event.when
+        } ;
+
+        let updatedEvent = await this.eventsRepo.save(newInput); 
+
+        console.log("updatedEvent: ", updatedEvent)
+        return updatedEvent ;
     }
 
     public async deleteEvent(id: number):  Promise<DeleteResult> {

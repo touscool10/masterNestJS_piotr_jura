@@ -1,11 +1,11 @@
 # Endpoint FindAllEvents
 ### 
-GET http://localhost:3000/events?page=4
+GET http://localhost:3000/events?page=3
 Content-Type: application/json  
 
 # Endpoint  FindOneEvent
 ### 
-GET http://localhost:3000/events/9
+GET http://localhost:3000/events/14
 Content-Type: application/json  
 
 # Endpoint 
@@ -69,8 +69,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json  
 
 {
-    "username": "touscool10",
-    "password": "18501405"
+    "username": "vanessa2022",
+    "password": "18501405123"
 }
 
 # Endpoint CreateUser
@@ -79,12 +79,12 @@ POST http://localhost:3000/users
 Content-Type: application/json  
 
 {
-    "username": "charles2022",
-    "email": "charles@gmail.com",
+    "username": "vanessa2022",
+    "email": "vanessa2022@gmail.com",
     "password": "18501405123",
     "retypedPassword": "18501405123",
-    "firstName": "Charles",
-    "lastName": "Abami"
+    "firstName": "Vanessa",
+    "lastName": "Suany"
 }
 
 # Endpoint HelloWorldInJapan
@@ -97,12 +97,13 @@ Content-Type: application/json
 ### 
 POST http://localhost:3000/events
 Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bGlvMjAyMiIsInN1YiI6MywiaWF0IjoxNjU2NzE2MzgwLCJleHAiOjE2NTY3MTk5ODB9.O8y1xxVUOW8L2Qv7MMneU0aDSMuKqSSBWen9QS0ae0g
 
 {   
-    "name": "Shopping",
-    "description": "Let's go shopping",
-    "when": "2022-10-17T13:00:00",
-    "address": "Street 50, WallStreet Center"
+    "name": "Julio Event",
+    "description": "Let's Code Hard 222",
+    "when": "2022-02-02T13:00:00",
+    "address": "Floripa"
 }
 
 # Endpoint  CreateEvent
@@ -120,7 +121,8 @@ Content-Type: application/json
 # Endpoint  UpdateEvent
 ### 
 PATCH http://localhost:3000/events/1
-Content-Type: application/json  
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbmVzc2EyMDIyIiwic3ViIjo0LCJpYXQiOjE2NTY3MjA0OTQsImV4cCI6MTY1NjcyNDA5NH0.bXyZCxNJUuUpVHk2mVmwcGN7nmTMwyucjbSq2f9MPKo
 
 {   
     "name": "Shopping",
@@ -132,6 +134,7 @@ Content-Type: application/json
 # Endpoint  DeleteEvent
 ### 
 DELETE http://localhost:3000/events/1
-Content-Type: application/json  
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbmVzc2EyMDIyIiwic3ViIjo0LCJpYXQiOjE2NTY3MjA5MTksImV4cCI6MTY1NjcyNDUxOX0.sg7okrkvZytaVBz3QTZhPsHruTNim70MnbRss0MROfk
 
 {}
